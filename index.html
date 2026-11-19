@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAFMUlEQVR4nO3dTW7bMBRFYabIGpJm0C6mC89iOgmyiw4YqKrdZ9MUf+6lzjcOWur5+Ml2AOfp5fuPBPzPt9kHgC7iQIg4ECIOhIgDIeJAiDgQIg6EiAMh4kCIOBAiDoSIAyHiQIg4ECIOhIgDIeJAiDgQIg6EiAMh4kCIOBAiDoSIAyHiQIg4ECIOhIgDoefZB5jm89db+Q+/vn/0O4msp5N8BcNDKZQ4Qy4rx9E8iMiqoSwYx7Amri1WyVJxTMxib5lEVohDpIlr7pV4xyGbxZ5vIq5xWGSx55iI5YdgdmUkzzObbQ7HEV8wWiFOm2OBMpLVVXhsDqOBltNfIQabY8kyksN1qcehP8EjxK9O97YyYHCFi13nJIOJxtHp8WjyGCifrS3FONpOv+vQjY5aQS6OhuMeNmvHM5fQiqPJlCfO1/38F4TiOD5ZkbEucyEqccwa6OfH71v/5tvPusOs0YfE5xwHR/n6/qEwyr3jR1L4CEQijiPUsthTPluJ+XFUP0UEF8a1I4ecvjwmx3GkjLYn6cq0j5lxnKSMzLGP+beVRzmWkdmdfFocdU8Iu/leqHy/PWl5zInjnGVkRn3Y3FbWKCNzuZYJcVQ8CVymWa7iisYvj9FxUMZGvw/128qqZWTiVzc0jukf+S1g5AylN4f4E6sJ5WscF8ejyStPra1Hr3TY8pDeHJhLNI7zrI1M83oHxcFX99310FWPubOIbg4oGBEHa6OQ2vJgcyBEHAh1j4N7ykOk7ixsDoSE4mBtZDpzEIoDavrGwa9he+s6YTYHQipx6NxoFYhMQyUOCCIOhIgDoY5x8FZljH5zltgcIq+/pCjMRCIOaCIOhIgDIeK45fPj9+2vG1wbcdx32kSIo9QJE3mefYDJLr6G9u7Dn3+g+strvbA5/ipfDCfZIsRRb/lEiONL9cO8cCLE8eX17eeRVxJLJkIc/yCRPYk41H5/q5CIwkw6xqHwe8UjFBIp0W/OEptDmUsiPRBHkXMmQhwPOJKI44eqKnEovP4qdHCLlBCZhkocdh5KxHFtpN5xuL9huWvAFrlzgJ4TZnM0cDsR07WRpOIQudFWa7VFdOYgFMcaLhLxXRtpQBxS32M0TPUWkfqWLDZHR9ZrIxEHbhgRxznvLBWk7imJzYEbBsXB8rhLbW0k2c1xtj40r1c0DigYF4fsH6uaTvYPnElvjjP0oXyNQ+NY/pe0A4ycofTmSNpPrOPEr250HPp/o3sY/b/cPmFz0EdyKCPp31Y2K/Xhci1z4qh7ErjM9La6q5jyWn7a5jhnH0ZlJKPbysa3D7uTz4yj+glhN+V04MwTPxyavDlO0odjGSmlp5fvPyb+99mRR1r8U1frS/N7zXFBeYUon62ExOZILeY4/Xm2t8blqGyO47PQeZquUUbS2RxZkwd44mTdz39BK47UdAEMm7LjmUvIxZFa3yC6jtvoqBUU40jdXkA0mb7y2doSjSMNeYFZ+HjonGQw3TgynfcgnWhmkam8lY0oz+448atTjyPJT7Ca/nWp31b2lrnF6GeRGWyOjctMbzO6CqfNsTFdIUZZZE6bY2M35eR5ZsvNsbFYIY5ZZN5xZLKJ+GaRrRDHRqQS9yY2S8WRTUxkmSyyBePYDKtksSY2K8ex1zyUVYPYO0sc1wS/oE3NeePAXZYfgmEM4kCIOBAiDoSIAyHiQIg4ECIOhIgDIeJAiDgQIg6EiAMh4kCIOBAiDoSIAyHiQIg4ECIOhIgDIeJAiDgQIg6EiAMh4kCIOBAiDoT+ACEZ5awy2QPGAAAAAElFTkSuQmCC">
 <title>Intervalltimer</title>
 <style>
-  :root { --bg:#16181d; --fg:#fff; --accent:#8a8f98; }
+  :root { --bg:#16181d; --fg:#fff; }
   * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   html,body { margin:0; height:100%; }
   body {
@@ -22,12 +22,13 @@
     display:flex; flex-direction:column; user-select:none; -webkit-user-select:none;
     overscroll-behavior:none;
   }
+  body.prep { --bg:#9a6100; }
   body.work { --bg:#c4311a; }
   body.rest { --bg:#1a7f4b; }
   body.done { --bg:#1d4ed8; }
   main { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:10px; }
   #phase { font-size:clamp(34px,11vw,56px); font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
-  #time { font-size:clamp(110px,40vw,190px); font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
+  #time { font-size:clamp(77px,28vw,133px); font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
   #round { font-size:clamp(24px,7vw,34px); font-weight:600; opacity:.9; }
   #bar { width:100%; max-width:420px; height:10px; border-radius:5px; background:rgba(255,255,255,.25); margin-top:18px; overflow:hidden; }
   #bar i { display:block; height:100%; width:0; background:#fff; }
@@ -45,7 +46,7 @@
 <body>
 <main>
   <div id="phase">Bereit</div>
-  <div id="time">01:00</div>
+  <div id="time">00:10</div>
   <div id="round">Runde 1 von 15</div>
   <div id="bar"><i id="fill"></i></div>
   <div id="total">Gesamt 17:30</div>
@@ -58,8 +59,10 @@
 <script>
 (function () {
   "use strict";
+  var PREP = 10000;                       // Countdown vor dem ersten Intervall
   var ROUNDS = 15, WORK = 60000, REST = 10000;
   var ROUND_MS = WORK + REST, TOTAL = ROUNDS * ROUND_MS; // 1 050 000 ms = 17:30
+  var END = PREP + TOTAL;
 
   var $ = function (id) { return document.getElementById(id); };
   var elPhase = $("phase"), elTime = $("time"), elRound = $("round"),
@@ -69,37 +72,60 @@
   var state = "idle";      // idle | running | paused | done
   var startAt = 0;         // Date.now()-Zeitpunkt, zu dem "Zeit 0" lag
   var pausedElapsed = 0;   // verstrichene ms beim Anhalten
-  var lastPhase = -1;      // zuletzt gemeldeter Phasenindex (0..29)
+  var lastPhase = -1;      // 0 = Countdown, 1..30 = Belastung/Pause
+  var lastTick = 99;       // zuletzt getickte Countdown-Sekunde
   var timer = null, wakeLock = null;
 
   // ---------- Ton ----------
-  var ctx = null;
+  var ctx = null, keep = null;
+
+  // Stille WAV-Schleife: hält die iOS-Audiositzung wach (Töne kommen dann auch
+  // bei jedem späteren Phasenwechsel und trotz Stumm-Schalter-Einstellung eher durch).
+  function silentWav() {
+    var n = 8000, buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+    function str(o, s) { for (var i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); }
+    str(0, "RIFF"); v.setUint32(4, 36 + n * 2, true); str(8, "WAVE"); str(12, "fmt ");
+    v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, 8000, true); v.setUint32(28, 16000, true); v.setUint16(32, 2, true);
+    v.setUint16(34, 16, true); str(36, "data"); v.setUint32(40, n * 2, true);
+    var bytes = new Uint8Array(buf), bin = "";
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return "data:audio/wav;base64," + btoa(bin);
+  }
   function unlockAudio() {
     var AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return;
-    if (!ctx) ctx = new AC();
-    if (ctx.state !== "running") ctx.resume();
-    // stiller Puffer, damit iOS den Ton freigibt
-    var b = ctx.createBuffer(1, 1, 22050), s = ctx.createBufferSource();
-    s.buffer = b; s.connect(ctx.destination); s.start(0);
+    if (AC && !ctx) ctx = new AC();
+    if (ctx && ctx.state !== "running") ctx.resume();
+    if (!keep) {
+      keep = new Audio(silentWav());
+      keep.loop = true; keep.setAttribute("playsinline", "");
+    }
+    var p = keep.play(); if (p && p.catch) p.catch(function () {});
+    if (ctx) { // stiller Puffer im Tippen-Ereignis
+      var b = ctx.createBuffer(1, 1, 22050), s = ctx.createBufferSource();
+      s.buffer = b; s.connect(ctx.destination); s.start(0);
+    }
   }
-  function tone(freq, t0, dur, vol, type) {
+  function stopKeep() { if (keep) keep.pause(); }
+
+  function tone(freq, delay, dur, vol, type) {
+    if (!ctx) return;
+    if (ctx.state !== "running") ctx.resume();
+    var t0 = ctx.currentTime + 0.02 + delay;
     var o = ctx.createOscillator(), g = ctx.createGain();
     o.type = type || "sine"; o.frequency.value = freq;
     g.gain.setValueAtTime(0.0001, t0);
     g.gain.exponentialRampToValueAtTime(vol, t0 + 0.01);
     g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
     o.connect(g); g.connect(ctx.destination);
-    o.start(t0); o.stop(t0 + dur + 0.02);
+    o.start(t0); o.stop(t0 + dur + 0.05);
   }
-  function beepWork() { if (!ctx) return; tone(1000, ctx.currentTime, 0.18, 0.6); }          // hoch, kurz
-  function beepRest() { if (!ctx) return; tone(560, ctx.currentTime, 0.18, 0.6); }           // tiefer, kurz
-  function finalTone() {                                                                      // Fanfare, deutlich anders
-    if (!ctx) return;
-    var t = ctx.currentTime, n = [523, 659, 784, 1047];
-    n.forEach(function (f, i) { tone(f, t + i * 0.22, 0.5, 0.6, "triangle"); });
-    tone(1047, t + 4 * 0.22, 1.2, 0.6, "triangle");
-    tone(784,  t + 4 * 0.22, 1.2, 0.4, "triangle");
+  function tick()      { tone(700, 0, 0.09, 0.5); }                    // Countdown 3-2-1
+  function beepWork()  { tone(1000, 0, 0.22, 0.7); }                   // hoch, kurz
+  function beepRest()  { tone(560, 0, 0.22, 0.7); }                    // tiefer, kurz
+  function finalTone() {                                                // Fanfare, deutlich anders
+    [523, 659, 784, 1047].forEach(function (f, i) { tone(f, i * 0.22, 0.5, 0.7, "triangle"); });
+    tone(1047, 0.88, 1.2, 0.7, "triangle"); tone(784, 0.88, 1.2, 0.4, "triangle");
   }
 
   // ---------- Zeitberechnung aus Zielzeitpunkten ----------
@@ -112,7 +138,7 @@
   function fmt(ms) { var s = Math.ceil(ms / 1000); return pad(Math.floor(s / 60)) + ":" + pad(s % 60); }
 
   function render() {
-    var e = Math.min(elapsedNow(), TOTAL);
+    var e = Math.min(elapsedNow(), END);
     if (state === "done") {
       document.body.className = "done";
       elPhase.textContent = "Geschafft!"; elTime.textContent = "00:00";
@@ -120,38 +146,46 @@
       elFill.style.width = "100%"; elTotal.textContent = "Gesamt 00:00";
       return;
     }
-    var round = Math.floor(e / ROUND_MS);           // 0..14
-    var inRound = e - round * ROUND_MS;
-    var working = inRound < WORK;
-    var phaseEnd = working ? WORK : ROUND_MS;
-    var remaining = phaseEnd - inRound;             // Restzeit = Zielzeitpunkt - jetzt
-
-    if (state === "idle") {
-      document.body.className = ""; elPhase.textContent = "Bereit";
+    var label, cls, remaining, round, t = e - PREP;
+    if (e < PREP) {                                  // Countdown vor Runde 1
+      cls = state === "idle" ? "" : "prep";
+      label = state === "idle" ? "Bereit" : "Gleich geht’s los";
+      remaining = PREP - e; round = 0;
+      elFill.style.width = "0%"; elTotal.textContent = "Gesamt " + fmt(TOTAL);
     } else {
-      document.body.className = working ? "work" : "rest";
-      elPhase.textContent = working ? "Belastung" : "Pause";
-      if (state === "paused") elPhase.textContent += " · angehalten";
+      round = Math.floor(t / ROUND_MS);              // 0..14
+      var inRound = t - round * ROUND_MS, working = inRound < WORK;
+      cls = working ? "work" : "rest";
+      label = working ? "Belastung" : "Pause";
+      remaining = (working ? WORK : ROUND_MS) - inRound;  // Zielzeitpunkt - jetzt
+      elFill.style.width = (t / TOTAL * 100).toFixed(2) + "%";
+      elTotal.textContent = "Gesamt " + fmt(TOTAL - t);
     }
+    if (state === "paused") label += " · angehalten";
+    document.body.className = cls;
+    elPhase.textContent = label;
     elTime.textContent = fmt(remaining);
     elRound.textContent = "Runde " + (round + 1) + " von " + ROUNDS;
-    elFill.style.width = (e / TOTAL * 100).toFixed(2) + "%";
-    elTotal.textContent = "Gesamt " + fmt(TOTAL - e);
   }
 
-  function tick() {
+  function step() {
     if (state !== "running") return;
     var e = Date.now() - startAt;
-    if (e >= TOTAL) { finish(); return; }
-    var phase = Math.floor(e / ROUND_MS) * 2 + ((e % ROUND_MS) < WORK ? 0 : 1);
+    if (e >= END) { finish(); return; }
+    var phase = e < PREP ? 0 : 1 + Math.floor((e - PREP) / ROUND_MS) * 2 + (((e - PREP) % ROUND_MS) < WORK ? 0 : 1);
     if (phase !== lastPhase) {            // auch nach Hintergrund: nur ein Ton
       lastPhase = phase;
-      (phase % 2 === 0) ? beepWork() : beepRest();
+      if (phase === 0) tick();
+      else ((phase - 1) % 2 === 0) ? beepWork() : beepRest();
+    }
+    if (e < PREP) {                       // Ticks bei 3, 2, 1
+      var sec = Math.ceil((PREP - e) / 1000);
+      if (sec <= 3 && sec < lastTick) { lastTick = sec; tick(); }
     }
     render();
   }
 
-  function startLoop() { stopLoop(); timer = setInterval(tick, 100); }
+  function startLoop() { stopLoop(); timer = setInterval(step, 100); }
   function stopLoop() { if (timer) { clearInterval(timer); timer = null; } }
 
   // ---------- Bildschirm wach halten ----------
@@ -166,26 +200,27 @@
   // ---------- Aktionen ----------
   function start() {
     unlockAudio();
-    state = "running"; startAt = Date.now(); lastPhase = -1;
-    lockScreen(); startLoop(); tick(); updateButtons();
+    state = "running"; startAt = Date.now(); lastPhase = -1; lastTick = 99;
+    lockScreen(); startLoop(); step(); updateButtons();
   }
   function pause() {
     pausedElapsed = Date.now() - startAt; state = "paused";
-    stopLoop(); unlockScreen(); render(); updateButtons();
+    stopLoop(); unlockScreen(); stopKeep(); render(); updateButtons();
   }
   function resume() {
     unlockAudio();
     startAt = Date.now() - pausedElapsed; state = "running";   // Zielzeitpunkte verschieben
-    lockScreen(); startLoop(); tick(); updateButtons();
+    lockScreen(); startLoop(); step(); updateButtons();
   }
   function reset() {
-    stopLoop(); unlockScreen();
-    state = "idle"; pausedElapsed = 0; lastPhase = -1;
+    stopLoop(); unlockScreen(); stopKeep();
+    state = "idle"; pausedElapsed = 0; lastPhase = -1; lastTick = 99;
     render(); updateButtons();
   }
   function finish() {
     stopLoop(); unlockScreen(); state = "done";
     finalTone(); render(); updateButtons();
+    setTimeout(stopKeep, 3000);
   }
 
   function updateButtons() {
@@ -202,14 +237,15 @@
 
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "visible" && state === "running") {
-      lockScreen(); if (ctx && ctx.state !== "running") ctx.resume(); tick();
+      lockScreen(); if (ctx && ctx.state !== "running") ctx.resume();
+      if (keep && keep.paused) { var p = keep.play(); if (p && p.catch) p.catch(function () {}); }
+      step();
     }
   });
   document.addEventListener("gesturestart", function (e) { e.preventDefault(); });
   document.addEventListener("dblclick", function (e) { e.preventDefault(); });
 
   render(); updateButtons();
-  window.__timer = { get state() { return state; } }; // nur für Tests
 })();
 </script>
 </body>
