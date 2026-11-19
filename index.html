@@ -41,6 +41,13 @@
   button:active { transform:scale(.98); opacity:.85; }
   button.primary { background:#fff; color:#111; min-height:104px; font-size:34px; }
   button[hidden] { display:none; }
+  #settings { width:100%; max-width:420px; margin-top:14px; display:flex; flex-direction:column; gap:10px; }
+  #settings[hidden] { display:none; }
+  .row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .lbl { font-size:22px; font-weight:600; width:118px; flex:none; text-align:left; }
+  .val { font-size:30px; font-weight:700; flex:1; text-align:center; font-variant-numeric:tabular-nums; }
+  button.step { width:64px; min-height:64px; font-size:36px; border-radius:50%; padding:0; line-height:1; }
+  body { overflow-y:auto; }
 </style>
 </head>
 <body>
@@ -50,6 +57,11 @@
   <div id="round">Runde 1 von 20</div>
   <div id="bar"><i id="fill"></i></div>
   <div id="total">Gesamt 23:20</div>
+  <div id="settings">
+    <div class="row" data-k="rounds"><span class="lbl">Intervalle</span><button class="step" data-d="-1" aria-label="weniger">−</button><b class="val"></b><button class="step" data-d="1" aria-label="mehr">+</button></div>
+    <div class="row" data-k="work"><span class="lbl">Belastung</span><button class="step" data-d="-1" aria-label="weniger">−</button><b class="val"></b><button class="step" data-d="1" aria-label="mehr">+</button></div>
+    <div class="row" data-k="rest"><span class="lbl">Pause</span><button class="step" data-d="-1" aria-label="weniger">−</button><b class="val"></b><button class="step" data-d="1" aria-label="mehr">+</button></div>
+  </div>
 </main>
 <div class="buttons">
   <button class="primary" id="main">Start</button>
@@ -60,13 +72,37 @@
 (function () {
   "use strict";
   var PREP = 10000;                       // Countdown vor dem ersten Intervall
-  var ROUNDS = 20, WORK = 60000, REST = 10000;
-  var ROUND_MS = WORK + REST, TOTAL = ROUNDS * ROUND_MS; // 1 400 000 ms = 23:20
-  var END = PREP + TOTAL;
+  var ROUNDS, WORK, REST, ROUND_MS, TOTAL, END;  // kommen aus den Einstellungen
 
   var $ = function (id) { return document.getElementById(id); };
   var elPhase = $("phase"), elTime = $("time"), elRound = $("round"),
       elFill = $("fill"), elTotal = $("total"), btnMain = $("main"), btnReset = $("reset");
+
+  // ---------- Einstellungen (Standard: 20 × 60 s Belastung / 10 s Pause = 23:20) ----------
+  var LIM = { rounds: [1, 99, 1], work: [5, 600, 5], rest: [0, 300, 5] };  // min, max, Schritt
+  var cfg = { rounds: 20, work: 60, rest: 10 };
+  try {
+    var saved = JSON.parse(localStorage.getItem("intervall-cfg"));
+    if (saved) for (var k in LIM) if (typeof saved[k] === "number" && saved[k] >= LIM[k][0] && saved[k] <= LIM[k][1]) cfg[k] = saved[k];
+  } catch (e) {}
+  function applyCfg() {
+    ROUNDS = cfg.rounds; WORK = cfg.work * 1000; REST = cfg.rest * 1000;
+    ROUND_MS = WORK + REST; TOTAL = ROUNDS * ROUND_MS; END = PREP + TOTAL;
+  }
+  function showCfg() {
+    var rows = document.querySelectorAll("#settings .row");
+    for (var i = 0; i < rows.length; i++) {
+      var key = rows[i].getAttribute("data-k"), v = cfg[key];
+      rows[i].querySelector(".val").textContent = key === "rounds" ? v : (v >= 60 ? Math.floor(v / 60) + ":" + pad(v % 60) + " min" : v + " s");
+    }
+  }
+  document.getElementById("settings").addEventListener("click", function (ev) {
+    var b = ev.target.closest("button.step"); if (!b || state !== "idle") return;
+    var key = b.parentNode.getAttribute("data-k"), L = LIM[key];
+    cfg[key] = Math.max(L[0], Math.min(L[1], cfg[key] + parseInt(b.getAttribute("data-d"), 10) * L[2]));
+    try { localStorage.setItem("intervall-cfg", JSON.stringify(cfg)); } catch (e) {}
+    applyCfg(); showCfg(); render();
+  });
 
   // Zustand: nur ein Startzeitpunkt (bzw. bei Pause die verstrichene Zeit) – kein Zähler.
   var state = "idle";      // idle | running | paused | done
@@ -233,6 +269,7 @@
 
   function updateButtons() {
     btnReset.hidden = (state === "idle");
+    $("settings").hidden = (state !== "idle");
     btnMain.textContent = { idle: "Start", running: "Anhalten", paused: "Fortsetzen", done: "Neu starten" }[state];
   }
   btnMain.addEventListener("click", function () {
@@ -253,7 +290,7 @@
   document.addEventListener("gesturestart", function (e) { e.preventDefault(); });
   document.addEventListener("dblclick", function (e) { e.preventDefault(); });
 
-  render(); updateButtons();
+  applyCfg(); showCfg(); render(); updateButtons();
 })();
 </script>
 </body>
